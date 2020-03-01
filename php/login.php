@@ -44,7 +44,7 @@
             {
               $_SESSION['fail']='<span style="color: red">Blad nieprawidowy
                login lub haslo</span>';
-              header('Location: index.php');
+              header('Location: log_in.php');
             }
         }
       $connection->close();
