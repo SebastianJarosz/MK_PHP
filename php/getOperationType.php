@@ -38,7 +38,7 @@ else
         {
           $rows = $result->fetch_assoc();
           foreach ($rows as $row ) {
-            $_SESSION['operation'.$i] = $row;
+            $_SESSION['opt'.$i] = $row;
           }
         }
         else {
@@ -46,8 +46,25 @@ else
         }
 
     }
+    $qsql = "SELECT id_opt FROM operationtyps WHERE id_op =$id";
+    $result = @$connection->query($qsql);
+    $numOfUser = $result->num_rows;
+    $_SESSION['numOfEntry'] = $numOfUser;
+    for ($i=0; $i <$numOfUser ; $i++){
+      if($numOfUser>0)
+      {
+        $rows = $result->fetch_assoc();
+        foreach ($rows as $row ) {
+          $_SESSION['idopt'.$i] = $row;
+        }
+      }
+      else {
+        header('Location: index.php');
+      }
+
+  }
     $result->free_result();
-    header('Location: operation.php');
+    header('Location: operationtype.php');
     $connection->close();
   }
 }

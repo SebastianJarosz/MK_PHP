@@ -13,7 +13,7 @@ else
     $qsql = "SELECT op_name FROM operations";
     $result = @$connection->query($qsql);
     $numOfUser=$result->num_rows;
-    $_SESSION['numOfEntry']=$numOfUser;
+    $_SESSION['numOfOp']=$numOfUser;
     echo $numOfUser;
     for ($i=0; $i <$numOfUser ; $i++){
       if($numOfUser>0)

@@ -1,16 +1,35 @@
-$qsql = "SELECT id_op FROM operations WHERE op_name = '$op_name'";
-$result = @$connection->query($qsql);
-$numOfUser = $result->num_rows;
-$_SESSION['numOfEntry']=$numOfUser;
-echo $numOfUser;
-for ($i=0; $i <$numOfUser ; $i++){
-  if($numOfUser>0)
-  {
-    $rows = $result->fetch_assoc();
-    foreach ($rows as $row ) {
-            echo  $_SESSION['operation'.$i] = $row;
+<?php
+  include '../html/header.html';
+  session_start();
+?>
+<h2>Typ operacji</h2>
+<hr></br>
+<?php
+  echo '<div class="row">';
+  $leng=$_SESSION['numOfEntry'];
+  echo '<div class="row row-cols-1 row-cols-md-3">';
+  for ($i=0; $i < $leng ; $i++) {
+    if ($i%3==0){
+      echo'</br>';
     }
+      echo'<div class="col mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">'.ucfirst($_SESSION['opt'.$i]).'</h3>
+        <hr>
+        <form action="addTool.php" method="post">
+          ';
+          $idopt = $_SESSION['idopt'.$i];
+          echo'
+          <button type="submit" class="btn btn-outline-success" name="idopt" value="'.$idopt.'">Wybierz</button>
+        </form>
+        </div>
+    </div>
+  </div>
+  ';
   }
-  else {
-    echo 'LOL';
-  }
+  echo '</div>';
+ ?>
+ <?php
+      include '../html/footer.html';
+  ?>
